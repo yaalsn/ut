@@ -6,6 +6,10 @@ spec:
   replicas: 1
   template:
     spec:
+      selector:
+        matchLabels:
+          app: producer-abc
+          component: ut
       containers:
       - name: producer
         image: streamnative/chaos-test:master
