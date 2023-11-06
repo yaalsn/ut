@@ -7,8 +7,12 @@ spec:
   selector:
     matchLabels:
       app: producer-abc
-      component: ut
+      component: ut-worker
   template:
+    metadata:
+      labels:
+        app: producer-abc
+        component: ut-worker
     spec:
       containers:
       - name: producer
