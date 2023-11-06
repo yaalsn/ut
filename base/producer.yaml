@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - name: producer
+        image: streamnative/chaos-test:master
+        imagePullPolicy: Always
+        command: [/chaos/runner/bin/runner]
+        args: [pulsar, at-least-once, produce, -m, "100000", -r, "100"]
+        volumeMounts:
+        - name: persistent-storage
+          mountPath: /data
+      volumes:
+      - name: persistent-storage
+        persistentVolumeClaim:
+          claimName: pc-share
