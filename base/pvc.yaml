@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: pc-share
 spec:
-  volumeMode: Filesystem
+  storageClassName: sn-default
   accessModes:
     - ReadWriteOnce
   resources:
