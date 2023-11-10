@@ -4,7 +4,15 @@ metadata:
   name: producer
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: producer
+      component: ut-worker
   template:
+    metadata:
+      labels:
+        app: producerc
+        component: ut-worker
     spec:
       containers:
       - name: producer
@@ -13,8 +21,6 @@ spec:
         command: [/chaos/runner/bin/runner]
         args: [pulsar, at-least-once, produce, -m, "100000", -r, "100"]
         env:
-        - name: PULSAR_CLIENT_serviceUrl
-          value: pulsar://proxy-auth-snp-proxy-headless.ut-proxy-auth.svc.cluster.local:6650
         - name: PULSAR_CLIENT_authPluginClassName
           value: org.apache.pulsar.client.impl.auth.AuthenticationToken
         - name: PULSAR_CLIENT_authParams
