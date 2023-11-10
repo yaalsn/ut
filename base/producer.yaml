@@ -19,18 +19,6 @@ spec:
         image: streamnative/chaos-test:master
         imagePullPolicy: Always
         command: [/chaos/runner/bin/runner]
-        args: [pulsar, at-least-once, produce, -m, "100000", -r, "100"]
-        env:
-        - name: PULSAR_CLIENT_authPluginClassName
-          value: org.apache.pulsar.client.impl.auth.AuthenticationToken
-        - name: PULSAR_CLIENT_authParams
-          value: file:///mnt/secret/token
-        - name: PULSAR_CONSUMER_topicNames
-          value: persistent://public/default/at-least-once-test-abc
-        - name: PULSAR_CONSUMER_subscriptionName
-          value: sub-1
-        - name: PULSAR_CONSUMER_subscriptionType
-          value: Shared
         volumeMounts:
         - name: persistent-storage
           mountPath: /tmp/msit
