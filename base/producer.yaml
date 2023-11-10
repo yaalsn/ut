@@ -47,7 +47,6 @@ spec:
           - key: TOKEN
             path: token
           secretName: proxy-auth-token-admin
-      volumes:
       - name: persistent-storage
         persistentVolumeClaim:
           claimName: pc-share
