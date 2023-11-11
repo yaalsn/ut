@@ -15,7 +15,7 @@ spec:
         component: ut-worker
     spec:
       containers:
-      - name: producer
+      - name: consumer
         image: streamnative/chaos-test:master
         imagePullPolicy: Always
         command: [/chaos/runner/bin/runner]
