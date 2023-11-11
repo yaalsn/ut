@@ -5,3 +5,4 @@ bases:
   - ../base
 patchesStrategicMerge:
   - producer.yaml
+  - consumer.yaml
