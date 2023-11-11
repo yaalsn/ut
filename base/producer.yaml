@@ -19,6 +19,9 @@ spec:
         image: streamnative/chaos-test:master
         imagePullPolicy: Always
         command: [/chaos/runner/bin/runner]
+        env:
+        - name: PULSAR_CLIENT_authParams
+          value: file:///mnt/secret/token
         volumeMounts:
         - name: persistent-storage
           mountPath: /tmp/msit
