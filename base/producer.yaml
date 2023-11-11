@@ -11,7 +11,7 @@ spec:
   template:
     metadata:
       labels:
-        app: producerc
+        app: producer
         component: ut-worker
     spec:
       containers:
