@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer
+spec:
+  template:
+    spec:
+      containers:
+      - name: consumer
+        args: [pulsar, at-least-once, consume]
+        env:
+        - name: PULSAR_CLIENT_authPluginClassName
+          value: org.apache.pulsar.client.impl.auth.AuthenticationToken
+        - name: PULSAR_CONSUMER_topicNames
+          value: persistent://public/default/at-least-once-test-abc
+        - name: PULSAR_CONSUMER_subscriptionName
+          value: sub-1
+        - name: PULSAR_CONSUMER_subscriptionType
+          value: Shared
+

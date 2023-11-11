@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consumer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consumer
+      component: ut-worker
+  template:
+    metadata:
+      labels:
+        app: consumer
+        component: ut-worker
+    spec:
+      containers:
+      - name: producer
+        image: streamnative/chaos-test:master
+        imagePullPolicy: Always
+        command: [/chaos/runner/bin/runner]
+        env:
+        - name: PULSAR_CLIENT_authParams
+          value: file:///mnt/secret/token
+        volumeMounts:
+        - name: persistent-storage
+          mountPath: /tmp/msit
+        - mountPath: /mnt/secret
+          name: client-token
+          readOnly: true
+      volumes:
+      - name: client-token
+        secret:
+          defaultMode: 420
+          items:
+          - key: TOKEN
+            path: token
+          secretName: proxy-auth-token-admin
+      - name: persistent-storage
+        persistentVolumeClaim:
+          claimName: pc-share
