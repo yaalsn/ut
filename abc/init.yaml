@@ -6,7 +6,7 @@ spec:
   template:
     spec:
       containers:
-      - name: producer
+      - name: init
         args: [pulsar, init, -t, "persistent://public/default/at-least-once-test-abc"]
         env:
         - name: PULSAR_CLIENT_authPluginClassName
