@@ -3,7 +3,6 @@ kind: Job
 metadata:
   name: consumer
 spec:
-  replicas: 1
   selector:
     matchLabels:
       app: consumer
