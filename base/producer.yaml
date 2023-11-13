@@ -3,16 +3,9 @@ kind: Job
 metadata:
   name: producer
 spec:
-  selector:
-    matchLabels:
-      app: producer
-      component: ut-worker
   template:
-    metadata:
-      labels:
-        app: producer
-        component: ut-worker
     spec:
+      restartPolicy: Never
       containers:
       - name: producer
         image: streamnative/chaos-test:master
