@@ -4,5 +4,6 @@ kind: Kustomization
 bases:
   - ../base
 patchesStrategicMerge:
+  - init.yaml
   - producer.yaml
   - consumer.yaml
